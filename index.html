@@ -1,0 +1,259 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KL3PJWD9');</script>
+    <!-- End Google Tag Manager -->
+
+<script>
+
+    // Function to generate a random integer within a specified range
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Function to select a random element from an array
+function getRandomArrayElement(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+var userID = getRandomInt(1, 1000); // Replace the range as needed
+var campaign = "campaigndemotest" + getRandomInt(1, 5);
+var medium = "mediumdemotest" + getRandomInt(1, 5);
+var source = "sourcedemotest" + getRandomInt(1, 5);
+var petType = getRandomArrayElement(["dog", "cat"]);
+var petSize = getRandomArrayElement(["small", "mid", "large"]);
+var sitterId = getRandomInt(1000, 9999); // Replace the range as needed
+var sitterName = "SitterName" + getRandomInt(1, 20);
+var ratingScore = getRandomInt(1, 5);
+var startingPrice = getRandomInt(50, 100);
+var reviews = getRandomInt(50, 150);
+var memberURL = 'members/description' + getRandomInt(1, 20);
+var zipCode = getRandomInt(10000, 99999);
+
+
+    //pageview event
+    function PageViewEvent(){
+
+        dataLayer.push({
+            'event':'page_view_event',
+            'page_title': 'home',
+            'page_path': '/',
+            'user_categorization' : 'owner',
+            'campaign' : campaign,
+            'source': source,
+            'medium': medium,
+            'login_status': 'logged_out',
+            'user_id': ''
+    
+        })
+    }
+
+
+      //search event
+      function SearchEvent(){
+
+dataLayer.push({
+    'event':'search_event',
+    'page_path': '/search',
+    'page_title': 'home',
+    'user_categorization' : 'owner',
+    'pet_type': petType,
+    'pet_size': petSize,
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'login_status': 'loggedOut',
+    'user_id': '',
+    'service_type': 'house_sitting',
+    'zip_code': zipCode
+})
+
+}
+
+
+
+ //search page view event
+function SearchPageViewEvent(){
+
+dataLayer.push({
+    'event':'page_view_event',
+    'page_path': '/search/results',
+    'page_title': 'search results',
+    'user_categorization' : 'owner',
+    'pet_size': 'small',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'login_status': 'loggedOut',
+    'user_id': ''
+})
+}
+
+//select sitter form search list
+function SelectSitterEvent(){
+
+dataLayer.push({
+    'event':'select_sitter_event',
+    'page_path': '/search/results',
+    'page_title': 'search results',
+    'user_categorization' : 'owner',
+    'pet_size': 'small',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'login_status': 'loggedOut',
+    'user_id': '',
+    'sitter_id': sitterId,
+    'sitter_name': sitterName,
+    'rating_score': ratingScore,
+    'starting_price': startingPrice,
+    'reviews': '99'
+})
+}
+
+
+//selected sitters profile page view
+function SelectedSitterPageViewEvent(){
+
+dataLayer.push({
+    'event':'page_view_event',
+    'page_path': memberURL,
+    'page_title': 'member',
+    'user_categorization' : 'owner',
+    'pet_size': 'small',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'login_status': 'loggedOut',
+    'user_id': '',
+})
+}
+
+
+
+
+//contact the sitter
+function ContactSitterEvent(){
+dataLayer.push({
+    'event':'contact_sitter_event',
+    'page_path': memberURL,
+    'page_title': 'member',
+    'user_categorization' : 'owner',
+    'pet_size': 'small',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'login_status': 'loggedOut',
+    'user_id': '',
+    'sitter_id': sitterId,
+    'sitter_name': sitterName,
+    'rating_score': ratingScore,
+    'starting_price': startingPrice,
+    'reviews': reviews,
+    'photo_sharing_rate': '100'
+})
+}
+
+
+//contact the sitter Page View
+function ContactSitterPageViewEvent(){
+dataLayer.push({
+    'event':'contact_sitter_page_view_event',
+    'page_path': memberURL + '/contact',
+    'page_title': 'member contact',
+    'user_categorization' : 'owner',
+    'pet_size': 'small',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'login_status': 'loggedOut',
+    'user_id': '',
+    'sitter_id': sitterId,
+    'sitter_name': sitterName,
+    'rating_score': ratingScore,
+    'starting_price': startingPrice,
+    'reviews': reviews,
+    'photo_sharing_rate': '100'
+})
+}
+
+
+function RegistrationPageView(){}
+
+function RegistrationCompleted(){}
+
+
+//sumbit the contact request
+function SendContactSitterEvent(){
+dataLayer.push({
+    'event':'send_contact_sitter_event',
+    'page_path': memberURL + '/contact',
+    'page_title': 'member contact',
+    'user_categorization' : 'owner',
+    'pet_size': 'small',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'login_status': 'loggedIn',
+    'service_type': 'house_sitting',
+    'user_id': userID,
+    'sitter_id': sitterId,
+    'sitter_name': sitterName,
+    'rating_score': ratingScore,
+    'starting_price': startingPrice,
+    'reviews': reviews,
+    'photo_sharing_rate': '100',
+    'pet_type': petType,
+    'pet_size': petSize
+})
+}
+
+
+
+
+</script>
+
+
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL3PJWD9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <h1>owner flow to book sitter</h1>
+<button onclick="PageViewEvent()" id="homepage">Land on home page</button>
+<button onclick="SearchEvent()"  id="search">Search</button>
+<button onclick="SearchPageViewEvent()" id="searchPage">search Page</button>
+<button onclick="SelectSitterEvent()" id="sitterselect">sitter select</button>
+<button onclick="SelectedSitterPageViewEvent()" id="sitterselect">sitter profile page view</button>
+<button onclick="ContactSitterEvent()" id="contactSitterClick">contact Sitter Click</button>
+
+<!--setup-->
+<button id="registrationPage">registration page</button>
+<button id="registrationSuccess">registration Success</button>
+<button onclick="ContactSitterPageViewEvent()" id="contactSitterPageView">contact Sitter page view</button>
+
+<!--setup-->
+
+<button onclick="SendContactSitterEvent()" id="sendContact">send contact</button>
+<br><br>
+<h1>become a sitter flow</h1>
+
+
+</body>
+
+
+</html>
