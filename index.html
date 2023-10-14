@@ -29,18 +29,20 @@ function getRandomArrayElement(arr) {
 }
 
 var userID = getRandomInt(1, 1000); // Replace the range as needed
-var campaign = "campaigndemotest" + getRandomInt(1, 5);
-var medium = "mediumdemotest" + getRandomInt(1, 5);
-var source = "sourcedemotest" + getRandomInt(1, 5);
+var campaignID = getRandomInt(1, 5);
+var campaign = "campaigndemotest" + campaignID;
+var medium = "mediumdemotest" + campaignID;
+var source = "sourcedemotest" + campaignID;
 var petType = getRandomArrayElement(["dog", "cat"]);
 var petSize = getRandomArrayElement(["small", "mid", "large"]);
 var sitterId = getRandomInt(1000, 9999); // Replace the range as needed
 var sitterName = "SitterName" + getRandomInt(1, 20);
 var ratingScore = getRandomInt(1, 5);
 var startingPrice = getRandomInt(50, 100);
+var photoSharingRate = getRandomInt(80, 100);
 var reviews = getRandomInt(50, 150);
 var memberURL = 'members/description' + getRandomInt(1, 20);
-var zipCode = getRandomInt(10000, 99999);
+var zipCode = getRandomInt(99992, 99999);
 
 
     //pageview event
@@ -48,26 +50,23 @@ var zipCode = getRandomInt(10000, 99999);
 
         dataLayer.push({
             'event':'page_view_event',
-            'page_title': 'home',
+            'page_title': 'Rover.com: Book Dog Boarding, Dog Walking and More',
             'page_path': '/',
             'user_categorization' : 'owner',
             'campaign' : campaign,
             'source': source,
             'medium': medium,
-            'login_status': 'logged_out',
-            'user_id': ''
-    
+            'login_status': 'logged_out'    
         })
     }
 
-
       //search event
-      function SearchEvent(){
+function SearchEvent(){
 
 dataLayer.push({
     'event':'search_event',
-    'page_path': '/search',
-    'page_title': 'home',
+    'page_path': '/',
+    'page_title': 'Rover.com: Book Dog Boarding, Dog Walking and More',
     'user_categorization' : 'owner',
     'pet_type': petType,
     'pet_size': petSize,
@@ -75,29 +74,24 @@ dataLayer.push({
     'source': source,
     'medium': medium,
     'login_status': 'loggedOut',
-    'user_id': '',
     'service_type': 'house_sitting',
     'zip_code': zipCode
 })
 
 }
 
-
-
  //search page view event
 function SearchPageViewEvent(){
 
 dataLayer.push({
     'event':'page_view_event',
-    'page_path': '/search/results',
-    'page_title': 'search results',
+    'page_path': '/search/',
+    'page_title': 'Search For Pet Care In Your Neighborhood | Rover.com',
     'user_categorization' : 'owner',
-    'pet_size': 'small',
     'campaign' : campaign,
     'source': source,
     'medium': medium,
-    'login_status': 'loggedOut',
-    'user_id': ''
+    'login_status': 'loggedOut'
 })
 }
 
@@ -106,15 +100,13 @@ function SelectSitterEvent(){
 
 dataLayer.push({
     'event':'select_sitter_event',
-    'page_path': '/search/results',
-    'page_title': 'search results',
+    'page_path': '/search/',
+    'page_title': 'Search For Pet Care In Your Neighborhood | Rover.com',
     'user_categorization' : 'owner',
-    'pet_size': 'small',
     'campaign' : campaign,
     'source': source,
     'medium': medium,
     'login_status': 'loggedOut',
-    'user_id': '',
     'sitter_id': sitterId,
     'sitter_name': sitterName,
     'rating_score': ratingScore,
@@ -123,49 +115,68 @@ dataLayer.push({
 })
 }
 
-
 //selected sitters profile page view
 function SelectedSitterPageViewEvent(){
 
 dataLayer.push({
     'event':'page_view_event',
     'page_path': memberURL,
-    'page_title': 'member',
+    'page_title': memberURL,
     'user_categorization' : 'owner',
-    'pet_size': 'small',
     'campaign' : campaign,
     'source': source,
     'medium': medium,
-    'login_status': 'loggedOut',
-    'user_id': '',
+    'login_status': 'loggedOut'
 })
 }
-
-
-
 
 //contact the sitter
 function ContactSitterEvent(){
 dataLayer.push({
     'event':'contact_sitter_event',
     'page_path': memberURL,
-    'page_title': 'member',
+    'page_title': memberURL,
     'user_categorization' : 'owner',
-    'pet_size': 'small',
     'campaign' : campaign,
     'source': source,
     'medium': medium,
     'login_status': 'loggedOut',
-    'user_id': '',
     'sitter_id': sitterId,
     'sitter_name': sitterName,
     'rating_score': ratingScore,
     'starting_price': startingPrice,
     'reviews': reviews,
-    'photo_sharing_rate': '100'
+    'photo_sharing_rate': photoSharingRate
 })
 }
 
+function RegistrationPageView(){
+    dataLayer.push({
+    'event':'page_view_event',
+    'page_path': '/account/continue/',
+    'page_title': 'Sign Up or Sign In | Rover.com',
+    'user_categorization' : 'owner',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'login_status': 'loggedOut'
+})
+    
+}
+
+function RegistrationCompleted(){
+    dataLayer.push({
+    'event':'registration_event',
+    'page_path': '/account/continue/',
+    'page_title': 'Sign Up or Sign In | Rover.com',
+    'user_categorization' : 'owner',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'user_id': userID,
+    'login_status': 'loggedIn'
+})
+}
 
 //contact the sitter Page View
 function ContactSitterPageViewEvent(){
@@ -174,35 +185,27 @@ dataLayer.push({
     'page_path': memberURL + '/contact',
     'page_title': 'member contact',
     'user_categorization' : 'owner',
-    'pet_size': 'small',
     'campaign' : campaign,
     'source': source,
     'medium': medium,
-    'login_status': 'loggedOut',
-    'user_id': '',
+    'user_id': userID,
+    'login_status': 'loggedIn',
     'sitter_id': sitterId,
     'sitter_name': sitterName,
     'rating_score': ratingScore,
     'starting_price': startingPrice,
     'reviews': reviews,
-    'photo_sharing_rate': '100'
+    'photo_sharing_rate': photoSharingRate
 })
 }
-
-
-function RegistrationPageView(){}
-
-function RegistrationCompleted(){}
-
 
 //sumbit the contact request
 function SendContactSitterEvent(){
 dataLayer.push({
     'event':'send_contact_sitter_event',
     'page_path': memberURL + '/contact',
-    'page_title': 'member contact',
+    'page_title': 'Contact FirstName | Rover.com',
     'user_categorization' : 'owner',
-    'pet_size': 'small',
     'campaign' : campaign,
     'source': source,
     'medium': medium,
@@ -214,12 +217,110 @@ dataLayer.push({
     'rating_score': ratingScore,
     'starting_price': startingPrice,
     'reviews': reviews,
-    'photo_sharing_rate': '100',
+    'photo_sharing_rate': photoSharingRate,
     'pet_type': petType,
     'pet_size': petSize
 })
 }
 
+/**
+ * 
+ * 
+ * 
+ * Sitter events
+ * 
+ * 
+ * */
+
+  //pageview event
+  //pageview event
+  function PageViewEvent_sitter(){
+
+dataLayer.push({
+    'event':'page_view_event',
+    'page_title': 'Rover.com: Book Dog Boarding, Dog Walking and More',
+    'page_path': '/',
+    'user_categorization' : 'sitter',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'user_id' : userID + "_123",
+    'login_status': 'loggedIn',   
+})
+}
+
+function SearchEvent_sitter(){
+
+dataLayer.push({
+    'event':'search_event',
+    'page_path': '/',
+    'page_title': 'Rover.com: Book Dog Boarding, Dog Walking and More',
+    'user_categorization' : 'owner',
+    'pet_type': petType,
+    'pet_size': petSize,
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'user_id' : userID + "_123",
+    'login_status': 'loggedIn',
+    'service_type': 'house_sitting',
+    'zip_code': zipCode
+})
+
+}
+
+ //search page view event
+function SearchPageViewEvent_siiter(){
+
+dataLayer.push({
+    'event':'page_view_event',
+    'page_path': '/search/',
+    'page_title': 'Search For Pet Care In Your Neighborhood | Rover.com',
+    'user_categorization' : 'sitter',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'user_id' : userID + "_123",
+    'login_status': 'loggedIn',
+})
+}
+
+//select sitter form search list
+function SelectSitterEvent_sitter(){
+
+dataLayer.push({
+    'event':'select_sitter_event',
+    'page_path': '/search/',
+    'page_title': 'Search For Pet Care In Your Neighborhood | Rover.com',
+    'user_categorization' : 'sitter',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'user_id' : userID + "_123",
+    'login_status': 'loggedIn',
+    'sitter_id': sitterId,
+    'sitter_name': sitterName,
+    'rating_score': ratingScore,
+    'starting_price': startingPrice,
+    'reviews': '99'
+})
+}
+
+//selected sitters profile page view
+function SelectedSitterPageViewEvent_sitter(){
+
+dataLayer.push({
+    'event':'page_view_event',
+    'page_path': memberURL,
+    'page_title': memberURL,
+    'user_categorization' : 'sitter',
+    'campaign' : campaign,
+    'source': source,
+    'medium': medium,
+    'user_id' : userID + "_123",
+    'login_status': 'loggedIn',
+})
+}
 
 
 
@@ -238,19 +339,25 @@ dataLayer.push({
 <button onclick="SearchEvent()"  id="search">Search</button>
 <button onclick="SearchPageViewEvent()" id="searchPage">search Page</button>
 <button onclick="SelectSitterEvent()" id="sitterselect">sitter select</button>
+<br><br><br>
 <button onclick="SelectedSitterPageViewEvent()" id="sitterselect">sitter profile page view</button>
 <button onclick="ContactSitterEvent()" id="contactSitterClick">contact Sitter Click</button>
-
-<!--setup-->
-<button id="registrationPage">registration page</button>
-<button id="registrationSuccess">registration Success</button>
+<br><br><br>
+<button onclick="RegistrationPageView()" id="registrationPage">registration page</button>
+<button onclick="RegistrationCompleted()" id="registrationSuccess">registration Success</button>
+<br><br><br>
 <button onclick="ContactSitterPageViewEvent()" id="contactSitterPageView">contact Sitter page view</button>
-
-<!--setup-->
-
 <button onclick="SendContactSitterEvent()" id="sendContact">send contact</button>
 <br><br>
-<h1>become a sitter flow</h1>
+
+<h1>Browser site as pet sitter</h1>
+<button onclick="PageViewEvent_sitter()" id="homepage">Land on home page</button>
+<button onclick="SearchEvent_sitter()"  id="search">Search</button>
+<button onclick="SearchPageViewEvent_sitter()" id="searchPage">search Page</button>
+<button onclick="SelectSitterEvent_sitter()" id="sitterselect">sitter select</button>
+<br><br><br>
+<button onclick="SelectedSitterPageViewEvent_sitter()" id="sitterselect">sitter profile page view</button>
+
 
 
 </body>
