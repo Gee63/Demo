@@ -35,6 +35,7 @@ var medium = "mediumdemotest" + campaignID;
 var source = "sourcedemotest" + campaignID;
 var petType = getRandomArrayElement(["dog", "cat"]);
 var petSize = getRandomArrayElement(["small", "mid", "large"]);
+var serviceType = getRandomArrayElement(["house_sitting", "boarding", "dropi_in", "dog_walking"]);
 var sitterId = getRandomInt(1000, 9999); // Replace the range as needed
 var sitterName = "SitterName" + getRandomInt(1, 20);
 var ratingScore = getRandomInt(1, 5);
@@ -74,7 +75,7 @@ dataLayer.push({
     'source': source,
     'medium': medium,
     'login_status': 'loggedOut',
-    'service_type': 'house_sitting',
+    'service_type': serviceType,
     'zip_code': zipCode
 })
 
@@ -210,7 +211,7 @@ dataLayer.push({
     'source': source,
     'medium': medium,
     'login_status': 'loggedIn',
-    'service_type': 'house_sitting',
+    'service_type': serviceType,
     'user_id': userID,
     'sitter_id': sitterId,
     'sitter_name': sitterName,
@@ -263,14 +264,14 @@ dataLayer.push({
     'medium': medium,
     'user_id' : userID + "_123",
     'login_status': 'loggedIn',
-    'service_type': 'house_sitting',
+    'service_type': serviceType,
     'zip_code': zipCode
 })
 
 }
 
  //search page view event
-function SearchPageViewEvent_siiter(){
+function SearchPageViewEvent_sitter(){
 
 dataLayer.push({
     'event':'page_view_event',
@@ -350,7 +351,7 @@ dataLayer.push({
 <button onclick="SendContactSitterEvent()" id="sendContact">send contact</button>
 <br><br>
 
-<h1>Browser site as pet sitter</h1>
+<h1>Browse site as pet sitter</h1>
 <button onclick="PageViewEvent_sitter()" id="homepage">Land on home page</button>
 <button onclick="SearchEvent_sitter()"  id="search">Search</button>
 <button onclick="SearchPageViewEvent_sitter()" id="searchPage">search Page</button>
